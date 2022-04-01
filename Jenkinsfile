@@ -6,7 +6,7 @@ pipeline {
       stage('checkout') {
            steps {
              
-                git branch: 'main', url: 'https://github.com/srikanta1219/devops-practical-2.git'
+                git branch: 'main', url: 'https://github.com/thhr53/devops-practical-2.git'
              
           }
         }
@@ -16,14 +16,14 @@ pipeline {
            steps {
               
                 sh 'docker build -t devopsclass:latest .' 
-                sh 'docker tag devopsclass srikanta1219/devopsclass:$BUILD_NUMBER'
+                sh 'docker tag devopsclass thhr53/devopsclass:$BUILD_NUMBER'
                
           }
         }
   stage('Publish image to Docker Hub') {
             steps {
         withDockerRegistry([ credentialsId: "DockerHub", url: "" ]) {
-           sh  'docker push srikanta1219/devopsclass:$BUILD_NUMBER' 
+           sh  'docker push thhr53/devopsclass:$BUILD_NUMBER' 
 		}
                   
           }
